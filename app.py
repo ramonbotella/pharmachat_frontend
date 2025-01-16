@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Streamlit App Title
-st.title("PharmaChat Frontend")
+st.title("PharmaChat: Your Pharma Assistant")
 
 # Input fields for medicament and question
 medicament = st.text_input("Enter the name of the medicament:")
@@ -23,7 +23,7 @@ if st.button("Submit"):
             # Handle the API response
             if response.status_code == 200:
                 result = response.json()
-                st.success("Response from PharmaChat:")
+                st.success("Response from Pharma Assistant:")
                 st.write(result.get("response", "No response received."))
             elif response.status_code == 404:
                 st.error(f"Error: {response.json().get('detail')}")
