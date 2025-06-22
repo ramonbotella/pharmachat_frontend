@@ -4,6 +4,11 @@ import requests
 # Streamlit App Title
 st.title("PharmaChat: Your Pharma Assistant")
 
+# Get the backend URL from the environment variable
+# If the environment variable is not set, it will default to
+# http://localhost:8000
+PHARMACHAT_API_BASE_URL = os.getenv('PHARMACHAT_BACKEND_URL', 'http://localhost:8000')
+
 # Input fields for medicament and question
 medicament = st.text_input("Enter the name of the medicament:")
 question = st.text_input("Enter your question:")
@@ -17,7 +22,7 @@ if st.button("Submit"):
         # Make the POST request to the PharmaChat API
         try:
             response = requests.post(
-                "http://pharmachat:8000/query",
+                f"{PHARMACHAT_API_BASE_URL}/query",
                 json={"medicament": medicament, "question": question},
             )
             # Handle the API response
